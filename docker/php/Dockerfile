@@ -1,4 +1,4 @@
-FROM php:8.0-fpm-buster
+FROM --platform=linux/x86_64 php:8.0-fpm-buster
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 
 # timezone environment
