@@ -23,11 +23,14 @@ module.exports = {
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         indent: 'off',
-        quotes: 'off'
+        quotes: 'off',
+        camelcase: "off",
+        semi: [2, "always"]
+
     },
     settings: {
         react: {
             version: 'detect'
         }
     }
-}
+};

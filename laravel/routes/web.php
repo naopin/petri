@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::group(['middleware' => 'auth:sanctum'], function() {
+//     Route::apiResource('task','TaskController');
+//     Route::patch('task/update-done/{task}','TaskController@updateDone');
+//     Route::get('user', function(Request $request) {
+//         return $request->user();
+//     });
+// });
+
 Route::get('{any}', function () {
     return view('app');
 })->where('any','.*');
