@@ -21,6 +21,9 @@ module.exports = {
     ],
     rules: {
         "no-use-before-define": "off",
+        "comma-dangle": "off",
+        "react/prop-types": "off",
+        "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         indent: 'off',
         quotes: 'off',

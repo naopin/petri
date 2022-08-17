@@ -4,6 +4,8 @@ import { useAuth } from "./hooks/AuthContext";
 import NotFoundPage from "./pages/error";
 import HelpPage from "./pages/help";
 import LoginPage from "./pages/login";
+import PrefecturePage from "./pages/prefecture";
+import RegisterPage from "./pages/register";
 import TaskPage from "./pages/tasks";
 import { useLogout, useUser } from "./queries/AuthQuery";
 
@@ -23,7 +25,18 @@ export const Router = () => {
     };
 
     const LoginRoute = (props: RouteProps) => {
+        console.log(authUser);
         if (isAuth) return <Redirect to="/" />;
+        return <Route {...props} />;
+    };
+
+    const RegisterRoute = (props: RouteProps) => {
+        if (isAuth) return <Redirect to="/register" />;
+        return <Route {...props} />;
+    };
+
+    const PrefecturRoute = (props: RouteProps) => {
+        if (!isAuth) return <Redirect to="/prefecture" />;
         return <Route {...props} />;
     };
 
@@ -42,29 +55,36 @@ export const Router = () => {
             <ul>
                 <li><Link to="/help">Help</Link></li>
                 <li> <Link to="/login">Login</Link></li>
+                <li> <Link to="/register">Register</Link></li>
             </ul>
         </header>
     );
 
-    if (isLoading) return <div className="loader"></div>;
     return (
         <BrowserRouter>
-            <div>
-                {isAuth ? navigation : loginNavigation}
-                <Switch>
-                    <Route path="/help">
-                        <HelpPage />
-                    </Route>
-                    <LoginRoute path="/login">
-                        <LoginPage />
-                    </LoginRoute>
-                    <GuardRoute exact path="/">
-                        <TaskPage />
-                    </GuardRoute>
-                    <Route component={NotFoundPage}></Route>
-                </Switch>
-            </div>
-        </BrowserRouter>
+            {isAuth ? navigation : loginNavigation}
+            <Switch>
+                <Route path="/help">
+                    <HelpPage />
+                </Route>
+                <LoginRoute path="/login">
+                    <LoginPage />
+                </LoginRoute>
+                <RegisterRoute path="/register">
+                    <RegisterPage />
+                </RegisterRoute>
+                <GuardRoute exact path="/">
+                    <TaskPage />
+                </GuardRoute>
+                <PrefecturRoute exact path="/prefecture">
+                    <PrefecturePage />
+                </PrefecturRoute>
+
+                {/* <PrivateRoute path="/" exact>  <TaskPage /></PrivateRoute> */}
+                <Route component={NotFoundPage}></Route>
+            </Switch>
+
+        </BrowserRouter >
     );
 };
 
