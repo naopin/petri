@@ -37,4 +37,20 @@ const useLogout = () => {
     });
 };
 
-export { useUser, useLogin, useLogout };
+const useRegister = () => {
+    const { setIsAuth } = useAuth();
+
+    return useMutation(api.register, {
+        onSuccess: (user) => {
+            if (user) {
+                setIsAuth(true);
+            }
+            toast.success("新規登録に成功しました");
+        },
+        onError: () => {
+            toast.error("新規登録に失敗しました");
+        },
+    });
+};
+
+export { useUser, useLogin, useLogout, useRegister };

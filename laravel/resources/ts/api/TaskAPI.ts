@@ -3,6 +3,7 @@ import { Task } from "../types/Task";
 
 const getTasks = async () => {
     const { data } = await axios.get<Array<Task>>("api/tasks");
+    console.log(data);
     return data;
 };
 
@@ -19,10 +20,7 @@ const createTask = async (title: string) => {
 };
 
 const updateTask = async ({ id, task }: { id: number; task: Task }) => {
-    console.log(id);
-    console.log(task);
     const { data } = await axios.put<Task>(`api/tasks/${id}`, task);
-    console.log(data);
     return data;
 };
 
