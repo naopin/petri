@@ -5,6 +5,7 @@ import NotFoundPage from "./pages/error";
 import HelpPage from "./pages/help";
 import LoginPage from "./pages/login";
 import PrefecturePage from "./pages/prefecture";
+import ProfilePage from "./pages/profile";
 import RegisterPage from "./pages/register";
 import TaskPage from "./pages/tasks";
 import { useLogout, useUser } from "./queries/AuthQuery";
@@ -35,17 +36,23 @@ export const Router = () => {
         return <Route {...props} />;
     };
 
-    const PrefecturRoute = (props: RouteProps) => {
+    const PrefectureRoute = (props: RouteProps) => {
         if (!isAuth) return <Redirect to="/prefecture" />;
+        return <Route {...props} />;
+    };
+
+    const ProfileRoute = (props: RouteProps) => {
+        if (!isAuth) return <Redirect to="/profile" />;
         return <Route {...props} />;
     };
 
     const navigation = (
         <header className="global-head">
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/help">Help</Link></li>
-                <li onClick={() => logout.mutate()}><span>Logout</span></li>
+                <li><Link to="/">ホーム</Link></li>
+                <li> <Link to="/profile">プロフィール</Link></li>
+                <li><Link to="/help">ヘルプ</Link></li>
+                <li onClick={() => logout.mutate()}><span>サインアウト</span></li>
             </ul>
         </header>
     );
@@ -53,9 +60,9 @@ export const Router = () => {
     const loginNavigation = (
         <header className="global-head">
             <ul>
-                <li><Link to="/help">Help</Link></li>
-                <li> <Link to="/login">Login</Link></li>
-                <li> <Link to="/register">Register</Link></li>
+                <li><Link to="/help">ヘルプ</Link></li>
+                <li> <Link to="/login">サインイン</Link></li>
+                <li> <Link to="/register">サインアップ</Link></li>
             </ul>
         </header>
     );
@@ -76,9 +83,12 @@ export const Router = () => {
                 <GuardRoute exact path="/">
                     <TaskPage />
                 </GuardRoute>
-                <PrefecturRoute exact path="/prefecture">
+                <PrefectureRoute exact path="/prefecture">
                     <PrefecturePage />
-                </PrefecturRoute>
+                </PrefectureRoute>
+                <ProfileRoute exact path="/profile">
+                    <ProfilePage />
+                </ProfileRoute>
 
                 {/* <PrivateRoute path="/" exact>  <TaskPage /></PrivateRoute> */}
                 <Route component={NotFoundPage}></Route>
