@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const HelpPage: React.VFC = () => {
     return (
@@ -6,7 +6,7 @@ const HelpPage: React.VFC = () => {
             <h1>ヘルプ</h1>
             <p>使い方を説明します</p>
         </div>
-    )
-}
+    );
+};
 
-export default HelpPage
+export default HelpPage;
