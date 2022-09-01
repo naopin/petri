@@ -19,7 +19,7 @@ import LoginPage from './pages/login';
 import PrefecturePage from './pages/prefecture';
 import ProfilePage from './pages/profile';
 import Register from './pages/register';
-import TaskPage from './pages/tasks';
+import SearchPage from './pages/search';
 import { useLogout, useUser } from "./queries/AuthQuery";
 
 export const Router = () => {
@@ -46,6 +46,11 @@ export const Router = () => {
                 id: 1,
                 pass: 'help',
                 name: 'ヘルプ'
+            },
+            {
+                id: 2,
+                pass: 'search',
+                name: '検索'
             }
         ];
         if (!isAuth) {
@@ -59,6 +64,11 @@ export const Router = () => {
                     id: 2,
                     pass: 'register',
                     name: '登録'
+                },
+                {
+                    id: 3,
+                    pass: 'search',
+                    name: '検索'
                 }
             ];
             return logoutBar;
@@ -73,13 +83,13 @@ export const Router = () => {
     }, [authUser]);
 
     const GuardRoute = (props: RouteProps) => {
-        if (!isAuth) return <Redirect to="/login" />;
+        if (!isAuth) return <Redirect to="/search" />;
         return <Route {...props} />;
     };
 
     const LoginRoute = (props: RouteProps) => {
         console.log(authUser);
-        if (isAuth) return <Redirect to="/" />;
+        if (isAuth) return <Redirect to="/search" />;
         return <Route {...props} />;
     };
 
@@ -90,6 +100,11 @@ export const Router = () => {
 
     const PrefecturRoute = (props: RouteProps) => {
         if (!isAuth) return <Redirect to="/prefecture" />;
+        return <Route {...props} />;
+    };
+
+    const SearchRoute = (props: RouteProps) => {
+        if (!isAuth) return <Redirect to="/search" />;
         return <Route {...props} />;
     };
 
@@ -118,8 +133,7 @@ export const Router = () => {
 
     return (
         <BrowserRouter>
-
-            <AppBar position="static">
+            <AppBar position="static" color="default">
                 <Container maxWidth="xl">
                     <Toolbar disableGutters>
                         <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -247,15 +261,18 @@ export const Router = () => {
                 <Route path="/help">
                     <HelpPage />
                 </Route>
+                <SearchRoute exact path="/search">
+                    <SearchPage />
+                </SearchRoute>
                 <LoginRoute path="/login">
                     <LoginPage />
                 </LoginRoute>
                 <RegisterRoute path="/register">
                     <Register />
                 </RegisterRoute>
-                <GuardRoute exact path="/">
+                {/* <GuardRoute exact path="/">
                     <TaskPage />
-                </GuardRoute>
+                </GuardRoute> */}
                 <PrefecturRoute exact path="/prefecture">
                     <PrefecturePage />
                 </PrefecturRoute>
