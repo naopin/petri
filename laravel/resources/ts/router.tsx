@@ -82,6 +82,11 @@ export const Router = () => {
         }
     }, [authUser]);
 
+    const ProfileRoute = (props: RouteProps) => {
+        if (!isAuth) return <Redirect to="/profile" />;
+        return <Route {...props} />;
+    };
+
     const GuardRoute = (props: RouteProps) => {
         if (!isAuth) return <Redirect to="/search" />;
         return <Route {...props} />;
@@ -104,12 +109,7 @@ export const Router = () => {
     };
 
     const SearchRoute = (props: RouteProps) => {
-        if (!isAuth) return <Redirect to="/search" />;
-        return <Route {...props} />;
-    };
-
-    const ProfileRoute = (props: RouteProps) => {
-        if (!isAuth) return <Redirect to="/profile" />;
+        if (isAuth) return <Redirect to="/search" />;
         return <Route {...props} />;
     };
 
@@ -141,7 +141,7 @@ export const Router = () => {
                             variant="h6"
                             noWrap
                             component="a"
-                            href="/"
+                            href="/search"
                             sx={{
                                 mr: 2,
                                 display: { xs: 'none', md: 'flex' },
@@ -261,7 +261,7 @@ export const Router = () => {
                 <Route path="/help">
                     <HelpPage />
                 </Route>
-                <SearchRoute exact path="/search">
+                <SearchRoute path="/search">
                     <SearchPage />
                 </SearchRoute>
                 <LoginRoute path="/login">
@@ -276,7 +276,7 @@ export const Router = () => {
                 <PrefecturRoute exact path="/prefecture">
                     <PrefecturePage />
                 </PrefecturRoute>
-                <ProfileRoute>
+                <ProfileRoute path="/profile">
                     <ProfilePage />
                 </ProfileRoute>
 
