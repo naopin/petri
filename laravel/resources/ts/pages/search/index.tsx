@@ -7,9 +7,14 @@ const SearchPage: React.FC = () => {
 
             <Box style={{
                 position: 'relative',
-                height: '300px'
+                height: '300px',
             }}>
-                <img src="/images/main.jpeg" alt="picture" />
+                <img style={{
+                    width: '100%',
+                    maxHeight: '420px',
+                    minHeight: '420px',
+                    objectFit: 'cover'
+                }} src="/images/main.jpeg" alt="picture" />
                 <Box style={{
                     position: 'absolute',
                     width: '96%',
