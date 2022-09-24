@@ -4,7 +4,6 @@ import React from 'react';
 const SearchPage: React.FC = () => {
     return (
         <Box>
-
             <Box style={{
                 position: 'relative',
                 height: '300px',
@@ -35,7 +34,6 @@ const SearchPage: React.FC = () => {
                         boxShadow: '3px 5px 5px rgb(0 0 0 / 10%)',
                         zIndex: 3,
                     }}>
-
                         <Box>
                             <Box mb={3} style={{
                                 width: '100%',
@@ -47,7 +45,6 @@ const SearchPage: React.FC = () => {
                             </Box>
                             <Button variant="outlined">検索</Button>
                         </Box>
-
                     </Box>
                 </Box>
             </Box>
