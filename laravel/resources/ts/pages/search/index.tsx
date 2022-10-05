@@ -48,7 +48,6 @@ const SearchPage: React.FC = () => {
                     </Box>
                 </Box>
             </Box>
-
         </Box >
     );
 };
