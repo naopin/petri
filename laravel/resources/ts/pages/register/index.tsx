@@ -18,7 +18,6 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<FormValue>();
     const history = useHistory();
     const [loading, setLoading] = useState(false);
-
     const onSubmit: SubmitHandler<FormValue> = (value: FormValue) => {
         setLoading(true);
         registerApi.mutate(value);
